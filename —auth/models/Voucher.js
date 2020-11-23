@@ -12,10 +12,6 @@ const voucherSchema = new Schema({
   imgName: String,
   imgPath: String,
   publicId: String,
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-}
 
 });
 

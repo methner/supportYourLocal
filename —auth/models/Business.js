@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const businessSchema = new Schema({
-    name: String,
+    companyName: String,
     description: String,
     contact: {
+        name: String,
         phone: Number,
         address: String,
         email: String,
@@ -20,12 +21,13 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
-    // voucher: [
-    //     { type: Schema.Types.ObjectId, ref: Voucher }],
-    timestamps: {
-        // createdAt: 'created_at',
-        // updatedAt: 'updated_at'
-    },
+
+    voucher: [
+        { type: Schema.Types.ObjectId, ref: Voucher }],
+    products: [
+        {name: String, imageUrl: String,}
+    ],
+
 
 });
 
