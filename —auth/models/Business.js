@@ -6,7 +6,7 @@ const businessSchema = new Schema({
     name: String,
     description: String,
     contact: {
-        phone: Number,
+        phone: String,
         address: String,
         email: String,
         website: String,
@@ -22,10 +22,10 @@ const businessSchema = new Schema({
       },
     voucher: [
         { type: Schema.Types.ObjectId, ref: Voucher }],
-    timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    },
+    products: [
+        {name: String, imageUrl: String,}
+    ],
+
 
 });
 
