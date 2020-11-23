@@ -20,11 +20,11 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
-    voucher: [
-        { type: Schema.Types.ObjectId, ref: Voucher }],
+    // voucher: [
+    //     { type: Schema.Types.ObjectId, ref: Voucher }],
     timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
+        // createdAt: 'created_at',
+        // updatedAt: 'updated_at'
     },
 
 });
