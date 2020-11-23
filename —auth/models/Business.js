@@ -7,7 +7,7 @@ const businessSchema = new Schema({
     description: String,
     contact: {
         name: String,
-        phone: Number,
+        phone: String,
         address: String,
         email: String,
         website: String,
@@ -22,7 +22,7 @@ const businessSchema = new Schema({
         default: 'admin'
       },
     voucher: [
-        { type: Schema.Types.ObjectId, ref: Voucher }],
+        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
     products: [
         {name: String, imageUrl: String,}
     ],
