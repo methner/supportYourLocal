@@ -23,10 +23,10 @@ const businessSchema = new Schema({
       },
     voucher: [
         { type: Schema.Types.ObjectId, ref: Voucher }],
-    timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    },
+    products: [
+        {name: String, imageUrl: String,}
+    ],
+
 
 });
 
