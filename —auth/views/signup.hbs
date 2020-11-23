@@ -1,0 +1,27 @@
+<h1>Register as a user or a business</h1>
+
+<h2>Register as a user</h2>
+
+<form action="/signup-user" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username">
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  <button type="submit">Sign up</button>
+</form>
+{{#if message}}
+  <p style="color: red;">{{message}}</p>
+{{/if}}
+
+<h2>Register as a business</h2>
+
+<form action="/signup-business" method="POST">
+  <label for="businessname">Business Name</label>
+  <input type="text" name="businessname">
+  <label for="password">Password</label>
+  <input type="password" name="password">
+  <button type="submit">Sign up</button>
+</form>
+{{#if message}}
+  <p style="color: red;">{{message}}</p>
+{{/if}}
