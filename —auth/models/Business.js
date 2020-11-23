@@ -21,6 +21,7 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
+
     voucher: [
         { type: Schema.Types.ObjectId, ref: Voucher }],
     products: [
@@ -31,5 +32,4 @@ const businessSchema = new Schema({
 });
 
 const Business = mongoose.model('Business', businessSchema);
-
 module.exports = Business;
