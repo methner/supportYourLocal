@@ -12,9 +12,9 @@ router.get('/user/index', (req,res) => {            //when call the /signup
     res.render('/user/index');                       //render hbs 'signup'
 });
 
-// router.get('/login', (req,res) => {            //when call the /signup
-//     res.render('login');                       //render hbs 'signup'
-// });
+router.get('/login', (req,res) => {            //when call the /signup
+    res.render('login');                       //render hbs 'signup'
+});
 
 
 router.post('/signup-user', (req,res,next) => {
@@ -30,7 +30,7 @@ router.post('/signup-user', (req,res,next) => {
     .then( found =>{
 
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
-        if( found !== null) res.render('signup', { message :'The username is already exist' })
+        if( found !== null) res.render('signup', { message :'The username already exists' })
         //  ELSE CREATE THE PASSWORD+SALT
         else{
             
@@ -43,7 +43,7 @@ router.post('/signup-user', (req,res,next) => {
             .then(dbUser => {
                 //log in
                 req.session.user = dbUser;
-                res.redirect('/user-index');
+                res.redirect('/user/index');
             })
             .catch(err => {
                 next(err);
@@ -63,7 +63,7 @@ router.post('/signup-business', (req,res,next) => {
     if(username === '')     res.render( 'signup', {message : 'cannot be empty'})
 
     //  CREATE A DB USER AND PASSWORD+SALT
-    User.findOne({ username : username })
+    Business.findOne({ username : username })
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { message :'The username is already exist' })
@@ -75,10 +75,10 @@ router.post('/signup-business', (req,res,next) => {
             const hash = bcrypt.hashSync(password, salt);
             //  CREATE THE USER AND PASSWORD IN DB
             Business.create({ companyName : companyName, password : hash })
-            .then(dbUser => {
+            .then(dbBusiness => {
                 //log in
-                req.session.user = dbUser;
-                res.redirect('/business-index');
+                req.session.user = dbBusiness;
+                res.redirect('/business/index');
             })
             .catch(err => {
                 next(err);
@@ -87,28 +87,28 @@ router.post('/signup-business', (req,res,next) => {
     })
 });
 
-// router.post('/login', (req, res, next)=>{
-//     //get user and pass
-//     const { username , password} = req.body;
-//     //check user and pass are correct
-//     User.findOne({ username: username})     ///argumento pasado de body al metodo finOne
-//     .then( found => {
-//         //  IF THE USER DOESN'T EXIST
-//         if(found === null) {    
-//             res.render('login', { message : 'Invalid credentials' })
-//         }
-//         //check the passw match with database
-//         if(bcrypt.compareSync( password, found.password )){
-//             //IF PASSW + HASH MATCH //THE USER IS LOGGED
-//             req.session.user = found;
-//             res.redirect('/');
-//         }
-//         //  IF THE USER NAME MATCH BUT THE PASSW IS WRONG
-//         else{
-//             res.render('login', { message : 'Invalid credentials' })
-//         }
-//     });
-// });
+router.post('/login', (req, res, next)=>{
+    //get user and pass
+    const { username , password} = req.body;
+    //check user and pass are correct
+    User.findOne({ username: username})     ///argumento pasado de body al metodo finOne
+    .then( found => {
+        //  IF THE USER DOESN'T EXIST
+        if(found === null) {    
+            res.render('login', { message : 'Invalid credentials' })
+        }
+        //check the passw match with database
+        if(bcrypt.compareSync( password, found.password )){
+            //IF PASSW + HASH MATCH //THE USER IS LOGGED
+            req.session.user = found;
+            res.redirect('/user/index');
+        }
+        //  IF THE USER NAME MATCH BUT THE PASSW IS WRONG
+        else{
+            res.render('login', { message : 'Invalid credentials' })
+        }
+    });
+});
 
 
 // router.get('/logout', (req, res, next) => {
