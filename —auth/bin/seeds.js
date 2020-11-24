@@ -96,6 +96,7 @@ const businesses = [
 }
 ];
 
+
 // businesses.forEach(business => {
 //   Voucher.create(business.voucher).then(dbVoucher => {
 //     business.voucher = dbVoucher._id;
