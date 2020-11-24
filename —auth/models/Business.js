@@ -21,15 +21,15 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
+
     voucher: [
         { type: Schema.Types.ObjectId, ref: Voucher }],
-    timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    },
+    products: [
+        {name: String, imageUrl: String,}
+    ],
+
 
 });
 
 const Business = mongoose.model('Business', businessSchema);
-
 module.exports = Business;
