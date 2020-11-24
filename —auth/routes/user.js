@@ -67,4 +67,14 @@ router.post('/login-user', (req, res, next)=>{
     });
 });
 
+router.get('/businessList', (req, res) => {
+    console.log('check BusinessList')
+    Business.find().then(businesses => {
+        res.render('/businessList', { businesses });
+    })
+        .catch(err => {
+            next(err);
+        });
+});
+
 module.exports = router;

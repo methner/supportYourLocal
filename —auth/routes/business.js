@@ -2,10 +2,15 @@ const express    = require("express");
 const router     = express.Router();
 const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
+const { uploader, cloudinary } = require('../config/cloudinary');
 
 router.get('/new', (req,res) => {            //when call the /signup
     console.log(req.session)
     res.render('business/new', {business: req.session.user});                       //render hbs 'signup'
+});
+
+router.get('/index', (req,res) => {            
+    res.render('business/index', {business: req.session.user});                      
 });
 
 router.post('/signup-business', (req,res,next) => {
@@ -40,7 +45,7 @@ router.post('/signup-business', (req,res,next) => {
     })
 });
 
-router.post('/new', (req, res) => {
+router.post('/new', uploader.single('avatar'), (req, res) => {
     console.log(req.body);
     console.log(req.session.user._id);
     const newBusiness = {
@@ -52,7 +57,14 @@ router.post('/new', (req, res) => {
         address: req.body.address,
         email: req.body.email,
         website: req.body.website
-        }
+        }, 
+        avatar: {
+        imgName: req.body.imgName,
+        imgPath: req.body.imgPath,
+        publicId: req.body.publicId,
+        },
+        products: req.body.products,
+        voucher: req.body.voucher
       }
     Business.findByIdAndUpdate(req.session.user._id, newBusiness, {new: true})
     .then((updatedBusiness)=>{
@@ -63,8 +75,37 @@ router.post('/new', (req, res) => {
 
 router.get('/index', (req, res) => {
     console.log(req.session.user)
-    res.render('business/index', {business: req.session.user } )
+    res.render('business/index', {business: req.session.user._id } )
 })
+
+router.post('/login-business', (req, res, next)=>{
+    //get user and pass
+    console.log('checking');
+    const { username , password} = req.body;
+    //check user and pass are correct
+    Business.findOne({ username: username})     ///argumento pasado de body al metodo finOne
+    .then( found => {
+        //  IF THE USER DOESN'T EXIST
+        if(found === null) {    
+            res.render('login', { message : 'Invalid credentials' })
+        }
+        //check the passw match with database
+        if(bcrypt.compareSync( password, found.password )){
+            
+            //IF PASSW + HASH MATCH //THE USER IS LOGGED
+            req.session.user = found;
+            res.redirect('/business/index');
+        }
+            //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
+        else{
+            res.render('login', { message : 'Invalid credentials' })
+        }
+    });
+});
+
+
+
+
 
 
 module.exports = router;
