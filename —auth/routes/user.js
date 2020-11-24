@@ -3,10 +3,10 @@ const router     = express.Router();
  const bcrypt    = require('bcrypt');
  const User      = require('../models/User');
 
-
 router.get('/index', (req,res) => {            //when call the /signup
     res.render('user/index');                       //render hbs 'signup'
 });
+
 
 router.post('/signup-user', (req,res,next) => {
 
@@ -22,8 +22,7 @@ router.post('/signup-user', (req,res,next) => {
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { message :'The username is already exist' })
         //  ELSE CREATE THE PASSWORD+SALT
-        else{
-            
+        else{            
             const salt = bcrypt.genSaltSync();
             console.log(salt);
             const hash = bcrypt.hashSync(password, salt);
@@ -42,5 +41,30 @@ router.post('/signup-user', (req,res,next) => {
     })
 });
 
+
+router.post('/login-user', (req, res, next)=>{
+    //get user and pass
+    console.log('checking');
+    const { username , password} = req.body;
+    //check user and pass are correct
+    User.findOne({ username: username})     ///argumento pasado de body al metodo finOne
+    .then( found => {
+        //  IF THE USER DOESN'T EXIST
+        if(found === null) {    
+            res.render('login', { message : 'Invalid credentials' })
+        }
+        //check the passw match with database
+        if(bcrypt.compareSync( password, found.password )){
+            
+            //IF PASSW + HASH MATCH //THE USER IS LOGGED
+            req.session.user = found;
+            res.redirect('/user/index');
+        }
+            //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
+        else{
+            res.render('login', { message : 'Invalid credentials' })
+        }
+    });
+});
 
 module.exports = router;
