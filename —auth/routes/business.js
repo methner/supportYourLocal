@@ -3,11 +3,13 @@ const router     = express.Router();
 const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 
-router.get('/index', (req,res) => {            //when call the /signup
-    res.render('signup');                       //render hbs 'signup'
+router.get('/new', (req,res) => {            //when call the /signup
+    console.log(req.session)
+    res.render('business/new', {business: req.session.user});                       //render hbs 'signup'
 });
 
 router.post('/signup-business', (req,res,next) => {
+
     const { username, password } = req.body;
 
     if(password.length < 5) res.render( 'signup', {message : 'must be 2 chars min'})
@@ -17,7 +19,7 @@ router.post('/signup-business', (req,res,next) => {
     Business.findOne({ username : username })
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
-        if( found !== null) res.render('signup', { message :'The username already exists' })
+        if( found !== null) res.render('signup', { message :'The username is already exist' })
         
         else{
             //  ELSE CREATE THE PASSWORD+SALT
@@ -29,7 +31,7 @@ router.post('/signup-business', (req,res,next) => {
             .then(dbBusiness => {
                 //log in
                 req.session.user = dbBusiness;
-                res.redirect('/business/index');
+                res.redirect('/business/new');
             })
             .catch(err => {
                 next(err);
@@ -37,6 +39,32 @@ router.post('/signup-business', (req,res,next) => {
         }
     })
 });
+
+router.post('/new', (req, res) => {
+    console.log(req.body);
+    console.log(req.session.user._id);
+    const newBusiness = {
+        username: req.body.username,
+        description: req.body.description,
+        contact: {
+        name: req.body.name,
+        phone: req.body.phone,
+        address: req.body.address,
+        email: req.body.email,
+        website: req.body.website
+        }
+      }
+    Business.findByIdAndUpdate(req.session.user._id, newBusiness)
+    .then((updatedBusiness)=>{
+        req.session.user = updatedBusiness
+        res.redirect('/business/index')
+    }).catch(err => console.log(err))
+});
+
+router.get('/index', (req, res) => {
+    console.log(req.session.user)
+    res.render('business/index', {business: req.session.user } )
+})
 
 
 module.exports = router;
