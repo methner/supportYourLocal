@@ -8,6 +8,10 @@ router.get('/signup', (req,res) => {            //when call the /signup
     res.render('signup');                       //render hbs 'signup'
 });
 
+router.get('/user/index', (req,res) => {            //when call the /signup
+    res.render('/user/index');                       //render hbs 'signup'
+});
+
 // router.get('/login', (req,res) => {            //when call the /signup
 //     res.render('login');                       //render hbs 'signup'
 // });
@@ -17,6 +21,7 @@ router.post('/signup-user', (req,res,next) => {
 
     const { username, password } = req.body;
 
+    //  USER FORMAT CONDITIONS
     if(password.length < 5) res.render( 'signup', {message : 'must be 2 chars min'})
     if(username === '')     res.render( 'signup', {message : 'cannot be empty'})
 
@@ -26,9 +31,9 @@ router.post('/signup-user', (req,res,next) => {
 
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { message :'The username is already exist' })
-        
+        //  ELSE CREATE THE PASSWORD+SALT
         else{
-            //  ELSE CREATE THE PASSWORD+SALT
+            
             const salt = bcrypt.genSaltSync();
             console.log(salt);
             const hash = bcrypt.hashSync(password, salt);
@@ -38,7 +43,7 @@ router.post('/signup-user', (req,res,next) => {
             .then(dbUser => {
                 //log in
                 req.session.user = dbUser;
-                res.redirect('/');
+                res.redirect('/user-index');
             })
             .catch(err => {
                 next(err);
@@ -60,7 +65,6 @@ router.post('/signup-business', (req,res,next) => {
     //  CREATE A DB USER AND PASSWORD+SALT
     User.findOne({ username : username })
     .then( found =>{
-
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { message :'The username is already exist' })
         
@@ -69,13 +73,12 @@ router.post('/signup-business', (req,res,next) => {
             const salt = bcrypt.genSaltSync();
             console.log(salt);
             const hash = bcrypt.hashSync(password, salt);
-
             //  CREATE THE USER AND PASSWORD IN DB
-            Business.create({ username : username, password : hash })
+            Business.create({ companyName : companyName, password : hash })
             .then(dbUser => {
                 //log in
                 req.session.user = dbUser;
-                res.redirect('/');
+                res.redirect('/business-index');
             })
             .catch(err => {
                 next(err);
