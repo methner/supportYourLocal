@@ -6,7 +6,8 @@ const businessSchema = new Schema({
     companyName: String,
     description: String,
     contact: {
-        phone: Number,
+        name: String,
+        phone: String,
         address: String,
         email: String,
         website: String,
@@ -20,12 +21,13 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
-    // voucher: [
-    //     { type: Schema.Types.ObjectId, ref: Voucher }],
-    timestamps: {
-        // createdAt: 'created_at',
-        // updatedAt: 'updated_at'
-    },
+
+    voucher: [
+        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
+    products: [
+        {name: String, imageUrl: String,}
+    ],
+
 
 });
 

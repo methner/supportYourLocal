@@ -1,1 +1,17 @@
-<h1>Business Index</h1>
+
+<h1>Welcome {{this.companyName}}</h1>
+<br>
+<h2>Please find your business information below</h2>
+<p>What does your business do: {{this.description}}</p>
+<br>
+<h3>Contact Details</h3>
+<ul>
+    <li>Main contact person: {{this.contact.name}}</li>
+    <li>Phone number: {{this.contact.phone}}</li>
+    <li>Address: {{this.contact.address}}</li>
+    <li>Email address:{{this.contact.email}}</li>
+    <li>Website: {{this.contact.website}}</li>
+</ul>
+<br>
+<a href="/voucher">Add a voucher</a>
+
