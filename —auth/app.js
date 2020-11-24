@@ -82,9 +82,9 @@ passport.use(
     User.findOne({ username: username })
       .then(found => {
         if (found === null) {
-          done(null, false, { message: 'Wrong credentials' });
+          done(null, false, { message: 'Incorrect username' });
         } else if (!bcrypt.compareSync(password, found.password)) {
-          done(null, false, { message: 'Wrong credentials' });
+          done(null, false, { message: 'Incorrect password' });
         } else {
           done(null, found);
         }
