@@ -3,8 +3,9 @@ const router     = express.Router();
  const bcrypt    = require('bcrypt');
  const User      = require('../models/User');
 
-router.get('/signup', (req,res) => {            //when call the /signup
-    res.render('signup');                       //render hbs 'signup'
+
+router.get('/index', (req,res) => {            //when call the /signup
+    res.render('user/index');                       //render hbs 'signup'
 });
 
 router.post('/signup-user', (req,res,next) => {
@@ -18,7 +19,6 @@ router.post('/signup-user', (req,res,next) => {
     //  CREATE A DB USER AND PASSWORD+SALT
     User.findOne({ username : username })
     .then( found =>{
-
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { message :'The username is already exist' })
         //  ELSE CREATE THE PASSWORD+SALT
@@ -38,10 +38,8 @@ router.post('/signup-user', (req,res,next) => {
             .catch(err => {
                 next(err);
             })
-
         }
     })
-
 });
 
 
