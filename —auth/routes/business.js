@@ -54,7 +54,7 @@ router.post('/new', (req, res) => {
         website: req.body.website
         }
       }
-    Business.findByIdAndUpdate(req.session.user._id, newBusiness)
+    Business.findByIdAndUpdate(req.session.user._id, newBusiness, {new: true})
     .then((updatedBusiness)=>{
         req.session.user = updatedBusiness
         res.redirect('/business/index')
