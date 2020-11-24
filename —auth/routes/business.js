@@ -3,6 +3,10 @@ const router     = express.Router();
 const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 
+router.get('/index', (req,res) => {            //when call the /signup
+    res.render('business/index');                       //render hbs 'signup'
+});
+
 router.post('/signup-business', (req,res,next) => {
 
     const { username, password } = req.body;
