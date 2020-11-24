@@ -3,8 +3,11 @@ const router     = express.Router();
 const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 
-router.post('/signup-business', (req,res,next) => {
+router.get('/index', (req,res) => {            //when call the /signup
+    res.render('signup');                       //render hbs 'signup'
+});
 
+router.post('/signup-business', (req,res,next) => {
     const { username, password } = req.body;
 
     if(password.length < 5) res.render( 'signup', {message : 'must be 2 chars min'})
@@ -14,7 +17,7 @@ router.post('/signup-business', (req,res,next) => {
     Business.findOne({ username : username })
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
-        if( found !== null) res.render('signup', { message :'The username is already exist' })
+        if( found !== null) res.render('signup', { message :'The username already exists' })
         
         else{
             //  ELSE CREATE THE PASSWORD+SALT
