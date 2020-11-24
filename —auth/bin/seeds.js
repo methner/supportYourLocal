@@ -21,7 +21,7 @@ const businesses = [
 	password: '12345678',
 	avatar: "",
 	role: 'admin',
-	voucher: [{}],
+	voucher: [],
 	products: [{name: "", imageUrl: ""}]
   },
  
@@ -39,7 +39,7 @@ const businesses = [
 	password: '12345678',
 	avatar: "",
 	role: 'admin',
-	voucher: [{}],
+	voucher: [],
 	products: [{name: "", imageUrl: ""}]
   },
 {
@@ -56,7 +56,7 @@ const businesses = [
 	password: '12345678',
 	avatar: "",
 	role: 'admin',
-	voucher: [{}],
+	voucher: [],
 	products: [{name: "", imageUrl: ""}]
   },
 
@@ -74,7 +74,7 @@ const businesses = [
 	password: '12345678',
 	avatar: "",
 	role: 'admin',
-	voucher: [{}],
+	voucher: [],
 	products: [{name: "", imageUrl: ""}]
 },
 {
@@ -91,14 +91,21 @@ const businesses = [
 	password: '12345678',
 	avatar: "",
 	role: 'admin',
-	voucher: [{}],
+	voucher: [],
 	products: [{name: "", imageUrl: ""}]
 }
 ];
 
-businesses.forEach(business => {
-  Voucher.create(business.voucher).then(dbVaucher => {
-    business.voucher = dbVoucher._id;
-    Business.create(business);
-  });
-});
+
+// businesses.forEach(business => {
+//   Voucher.create(business.voucher).then(dbVoucher => {
+//     business.voucher = dbVoucher._id;
+//     Business.create(business);
+//   });
+// });
+Business.insertMany(businesses).then(data => {
+  console.log("successfully inserted");
+  mongoose.connection.close();
+}).catch(err => {
+  console.log(err);
+})
