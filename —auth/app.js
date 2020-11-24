@@ -61,7 +61,10 @@ app.use(
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });
