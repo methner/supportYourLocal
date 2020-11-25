@@ -4,25 +4,14 @@ const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 const { uploader, cloudinary } = require('../config/cloudinary');
 
+router.get('/index', (req,res) => {            //when call the /signup
+    res.render('business/index');                       //render hbs 'signup'
+});
+
 router.get('/new', (req,res) => {            //when call the /signup
     console.log(req.session)
     res.render('business/new', {business: req.session.user});                       //render hbs 'signup'
 });
-
-router.get('/index', (req,res) => {            
-    res.render('business/index', {business: req.session.user});                      
-});
-router.get('/index', (req,res, next) => { 
-    Business.find()
-    then(businesses =>{
-    res.render('business/index', { businesses });  
-
-    })  
-    .catch(err => {
-        next(err);
-    })         
-});
-
 
 
 router.post('/signup-business', (req,res,next) => {
@@ -116,6 +105,14 @@ router.post('/login-business', (req, res, next)=>{
         }
     });
 });
+
+
+router.get('/:id', (req, res) => {
+    Business.findById(req.params.id)
+    .then( business =>{
+        res.render('business/company-details', {business: business } )
+    }).catch(err => console.log(err));
+})
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {

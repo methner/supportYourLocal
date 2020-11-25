@@ -101,8 +101,6 @@ app.locals.title = 'Support your Local!';
 const index = require('./routes/index');
 app.use('/', index);
 
-const auth = require('./routes/auth');
-app.use('/', auth);
 
 const user = require('./routes/user');
 app.use('/user', user);
