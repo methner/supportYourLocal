@@ -66,6 +66,9 @@ router.get('/index', (req, res) => {
     res.render('business/index', {business: req.session.user } )
 });
 
+
+
+
 //ineke: add route to edit business info
 router.get('/:id/edit', (req, res, next) => {
     Business.findById(req.params.id)

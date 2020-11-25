@@ -1,14 +1,13 @@
 const express    = require("express");
 const Voucher = require("../models/Voucher");
 const router     = express.Router();
-const Business  = require('../models/Voucher');
 
 
 
 
-router.get('/', (req,res) => {              
+router.get('/voucher', (req,res) => {              
    console.log("this is the voucher route");
-   // res.render('business/voucher-details', {voucher});                
+   res.render('business/voucher-details');                
 });
 
 
@@ -17,9 +16,9 @@ router.post('/', (req, res, next) => {
     Voucher.create({ title, description, price })
         .then(() => {
             res.redirect('voucher-details');
-        });
+        })
         .catch(err => {
-            next(err);
+            console.log(err)
         });
 });
 
