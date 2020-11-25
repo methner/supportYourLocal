@@ -16,17 +16,69 @@ h2 {
   color: white;
   background-color: #EF6867; }
 
+#companyName {
+  font-size: 2em;
+  width: 20vw;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: center;
+  align-items: center;
+  align-content: flex-start;
+  text-align: center;
+  margin: 2px 0 0 10px;
+  color: white;
+  background-color: black; }
+
 .index {
   width: 600px;
   height: 35vm;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-style: italic; }
 
 .main-page {
   width: 500px;
   height: 35vm;
   margin: 0 auto; }
 
+.p-index {
+  display: flex;
+  width: 600px;
+  height: 35vm;
+  margin: 0 auto;
+  font-style: italic; }
+
+h3 {
+  font-size: 1em;
+  width: 20vw;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: center;
+  align-items: center;
+  align-content: flex-start;
+  text-align: center;
+  margin: 2px 0 0 10px;
+  color: white;
+  background-color: #dbbfbf; }
+
+h4 {
+  font-size: 1em;
+  font-style: underline;
+  width: 20vw;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: center;
+  align-items: center;
+  align-content: flex-start;
+  text-align: center;
+  margin: 2px 0 0 10px;
+  color: white;
+  background-color: #494747; }
+
 a {
+  text-decoration: none;
   color: #00B7FF; }
 
 .header-left {

@@ -100,9 +100,9 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
         website: req.body.website
         }, 
         avatar: {
-        imgName: req.body.imgName,
-        imgPath: req.body.imgPath,
-        publicId: req.body.publicId,
+        imgName: req.file.path,
+        imgPath: req.file.originalname,
+        publicId: req.file.filename,
         },
         products: req.body.products,
         voucher: req.body.voucher
