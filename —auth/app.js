@@ -42,7 +42,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// passport configuration
+// PASSPORT CONFIGURATION
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
@@ -98,15 +98,18 @@ passport.use(
 // default value for title local
 app.locals.title = 'Support your Local!';
 
+//ROUTES
 const index = require('./routes/index');
 app.use('/', index);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 const user = require('./routes/user');
-app.use('/user', user);
+app.use('/user', user);         //all the routes that receive /user goes to
 
 const business = require('./routes/business');
 app.use('/business', business)
-
 
 module.exports = app;
