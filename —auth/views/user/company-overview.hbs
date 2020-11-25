@@ -1,23 +1,8 @@
+<h1>Companies to support</h1>
 
-<div class="container">
-    <h1>Companies to support</h1>
-    
-    {{#each companyList}}
-    <div class="container">
-    	<a href="/business/{{_id}}"><h2 id="companyName">{{companyName}}</h2></a>
-    	
-        <p class="text">{{description}}</p>
-    	<br>
-    </div>
-    
-    {{!-- <a href="/business/{{business.companyName}}">See company details</a> --}}
-    {{/each}}
-    
-</div>
+{{#each companyList}}
+<a href="/business/{{_id}}"><h2>{{username}}</h2></a>
+<p>{{description}}</p>
+<br>
 
-
-
-{{!-- ////////////////////
-//WORKING WITH :ID//
-//////////////////// --}}
-
+{{/each}}

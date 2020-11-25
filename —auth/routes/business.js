@@ -107,22 +107,5 @@ router.get('/:id', (req, res) => {
     }).catch(err => console.log(err));
 })
 
-router.get('/:id', (req, res) => {
-    Business.findById(req.params.id)
-    .then( business =>{
-        res.render('business/company-details', {business: business } )
-    }).catch(err => console.log(err));
-})
-
-router.get('/logout', (req, res, next) => {
-    req.session.destroy((err) => {
-      if (err) {
-        next(err);
-      } else {
-        res.redirect('/');
-      }
-    });
-  });
-
 
 module.exports = router;
