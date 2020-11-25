@@ -64,7 +64,20 @@ router.post('/new', (req, res) => {
 router.get('/index', (req, res) => {
     console.log(req.session.user)
     res.render('business/index', {business: req.session.user } )
-})
+});
+
+//ineke: add route to edit business info
+router.get('/:id/edit', (req, res, next) => {
+    Business.findById(req.params.id)
+    .then(business => {
+        res.render('business/edit', {business})
+    })
+    .catch(err => {
+        next(err);
+    });
+});
+
+
 
 
 module.exports = router;
