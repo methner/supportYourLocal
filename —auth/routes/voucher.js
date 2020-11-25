@@ -25,7 +25,10 @@ router.post('/voucher', (req, res, next) => {
 router.get("/voucher-details", (req,res) =>  {
     Voucher.findOne({voucher})
     res.render("business/voucher-details", {voucher})
+
 })
+
+//try findMany method
 
 module.exports = router;
 
