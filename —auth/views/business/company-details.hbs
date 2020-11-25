@@ -1,28 +1,45 @@
-<h1>Company Details</h1>
-<br>
-<div>Company: {{business.username}}</div>
-<div>Description of business: {{business.description}}</div>
-<br>
-<h2>Contact Details</h2>
-<br>
-<div>Contact Person: {{business.contact.name}}</div>
-<div>Phone number: {{business.contact.phone}}</div>
-<div>Address: {{business.contact.address}}</div>
-<div>E-mail-address: {{business.contact.email}}</div>
-<div>Website: <div>{{business.contact.website}}</div>
-<br>
-<h2>Products</h2>
-{{#each business.products}}
-<div>{{business.products.name}}</div>
-
-<img src="{{business.products.imageUrl}}" alt="imageUrl">
-
-{{/each}}
-<br>
-<h2>Voucher</h2>
-{{#each business.voucher}}
-<div>business.voucher.type</div>
-{{/each}}
+<div class="container">
+    <h1>Company Details</h1>
+    <br>
+    <div class="details">
+        <h2 id="companyName">{{business.companyName}}</h2>
+        </div>
+        <br>
+    <div>
+        <h3>Who we are</h3>
+         <p class="text">{{business.description}}  </p> 
+    </div>
+        <br>
+        <div>
+            <h3>Contact Details</h3>
+            <br>
+            <span> Contact Person:  {{business.contact.name}}</span>  
+            <br>
+            <span>Phone number: {{business.contact.phone}}</span>
+            <br>    
+            <span>Address: {{business.contact.address}}</span>
+            <br>
+            <span>{{business.contact.email}}</span>
+            <br>
+            <span>{{business.contact.website}}</span>
+            
+            <br>
+        </div>
+    
+        <h3>Products</h3>
+        {{#each business.products}}
+    
+            <span>{{business.products.name}}</span>
+    
+            <img src="{{business.products.imageUrl}}" alt="imageUrl">
+    
+    {{/each}}
+    <br>
+    <h3>Voucher</h3>
+    {{#each business.voucher}}
+    <div>business.voucher.type</div>
+    {{/each}}
+</div>
 
 
 {{!-- 

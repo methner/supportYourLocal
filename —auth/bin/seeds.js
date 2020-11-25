@@ -10,7 +10,7 @@ const businesses = [
   {
     companyName: "Victoria Met Albert",
     description:
-      "Victoria met Albert, concept stores in Prenzlauer Berg & Friedrichshain, inspired by the love of the English queen and her German husband, stocks a charming selection of fashion, accessories and homeware - 'for the woman who has everything and the man who needs nothing'.",
+      "'Victoria met Albert' concept stores in Prenzlauer Berg & Friedrichshain, inspired by the love of the English queen and her German husband, stocks a charming selection of fashion, accessories and homeware - 'for the woman who has everything and the man who needs nothing.",
     contact: {
       phone: "(0)30 2977 4366",
       address: "KROSSENER STRASSE 9-10, 10245 Berlin",
@@ -63,7 +63,7 @@ const businesses = [
 {
     companyName: "Lord of Socks",
     description:
-      "There are many sock producers but there is only one Lord of Socks. Since our start in summer 2013 we have committed us to offer our customers high quality and best designs to fair prices. We combine Italian sock manufacturing expertise with British style influenced by the multi-cultural background of our home town.",
+      "There are many sock producers but there is only one Lord of Socks.<br> Since our start in summer 2013 we have committed us to offer our customers high quality and best designs to fair prices. <br>We combine Italian sock manufacturing expertise with British style influenced by the multi-cultural background of our home town.",
     contact: {
       phone: "	030 / 544 817 24",
       address: "10709 Berlin",
