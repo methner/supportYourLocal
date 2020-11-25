@@ -1,19 +1,24 @@
-<h1>Login</h1>
+{{!-- <h1>Login</h1> --}}
 
 <h2>Login as a user</h2>
+<br>
 
 <form action="/user/login-user" method="POST">
   <label for="username">Username</label>
   <input type="text" name="username">
   <label for="password">Password</label>
   <input type="password" name="password">
-  <button type="submit">Log in</button>
+  <button class="button" type="submit">Log in</button>
 </form>
+<br>
+
 {{#if message}}
   <p style="color: red;">{{message}}</p>
 {{/if}}
+<br>
 
 <h2>Login as a business</h2>
+<br>
 
 
 <form action="/business/login-business" method="POST">
@@ -22,8 +27,12 @@
 
   <label for="password">Password</label>
   <input type="password" name="password">
-  <button type="submit">Log in</button>
+  <button class="button" type="submit">Log in</button>
 </form>
+<br>
+
 {{#if message}}
   <p style="color: red;">{{message}}</p>
 {{/if}}
+<br>
+<br>

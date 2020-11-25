@@ -4,7 +4,7 @@ const router     = express.Router();
  const User      = require('../models/User');
 
 router.get('/index', (req,res) => {            //when call the /signup
-    res.render('user/index');                       //render hbs 'signup'
+    res.render('user/index', {user: req.session.user});                       //render hbs 'signup'
 });
 
 

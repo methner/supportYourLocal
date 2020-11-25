@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'supportYourLocal', //this is the folder name on the site
-    allowed_formats: 'jpg, png',
+    allowed_formats: 'JPEG, PNG',
     //format: async (req, file) => 'png', // supports promises as well
     public_id: (req, file) => 'computed-filename-using-request',
   },

@@ -1,8 +1,8 @@
 <h1>Welcome {{business.username}}</h1>
 <br>
-<h2>Please add your business information below</h2>
+<h3>Please add your business information below</h3>
 
-<form action="/business/new" method="POST">
+<form action="/business/new" method="POST" enctype="multipart/form-data">
  <label for="compmanyName">Compmany Name: </label> 
   <input id="compmanyName" type="text" name="compmanyName" value="{{ business.compmanyName}}">
   <br>

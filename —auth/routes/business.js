@@ -12,6 +12,16 @@ router.get('/new', (req,res) => {            //when call the /signup
 router.get('/index', (req,res) => {            
     res.render('business/index', {business: req.session.user});                      
 });
+router.get('/index', (req,res, next) => { 
+    Business.find()
+    then(businesses =>{
+    res.render('business/index', { businesses });  
+
+    })  
+    .catch(err => {
+        next(err);
+    })         
+});
 
 router.post('/signup-business', (req,res,next) => {
 
@@ -78,6 +88,8 @@ router.get('/index', (req, res) => {
     res.render('business/index', {business: req.session.user._id } )
 })
 
+
+
 router.post('/login-business', (req, res, next)=>{
     //get user and pass
     console.log('checking');
@@ -103,7 +115,15 @@ router.post('/login-business', (req, res, next)=>{
     });
 });
 
-
+router.get('/logout', (req, res, next) => {
+    req.session.destroy((err) => {
+      if (err) {
+        next(err);
+      } else {
+        res.redirect('/');
+      }
+    });
+  });
 
 
 
