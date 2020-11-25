@@ -108,7 +108,10 @@ const user = require('./routes/user');
 app.use('/user', user);
 
 const business = require('./routes/business');
-app.use('/business', business)
+app.use('/business', business);
+
+const voucher = require('./routes/voucher');
+app.use('/voucher', voucher);
 
 
 module.exports = app;

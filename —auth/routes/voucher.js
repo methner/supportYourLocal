@@ -3,6 +3,12 @@ const router     = express.Router();
 const Business  = require('../models/Voucher');
 
 
-router.get('/voucher-details', (req,res) => {            
-    res.render('business/voucher-details', {voucher});                  
+
+
+router.get('/', (req,res) => {            
+   // res.render('business/voucher-details', {voucher});   
+   console.log("this is the voucher route")               
 });
+
+
+module.exports = router;
