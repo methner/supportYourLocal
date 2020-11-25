@@ -23,6 +23,8 @@ router.get('/index', (req,res, next) => {
     })         
 });
 
+
+
 router.post('/signup-business', (req,res,next) => {
 
     const { username, password } = req.body;
