@@ -1,0 +1,28 @@
+<h1>Voucher</h1>
+<br>
+{{#each voucher}}
+<div>Title: {{voucher.title}}</div>
+<div>Description: {{voucher.description}}</div>
+<div>Value: {{voucher.price}}</div>
+{{//each}}
+
+
+
+
+
+{{!-- const voucherSchema = new Schema({
+  title: String,
+  description: String,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'Business'
+  },
+  price: Number,
+  imgName: String,
+  imgPath: String,
+  publicId: String,
+
+});
+
+const Voucher = mongoose.model('Voucher', voucherSchema);
+module.exports = Voucher; --}}
