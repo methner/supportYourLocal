@@ -3,6 +3,10 @@ const router     = express.Router();
 const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 
+router.get('/index', (req,res) => {            //when call the /signup
+    res.render('business/index');                       //render hbs 'signup'
+});
+
 router.get('/new', (req,res) => {            //when call the /signup
     console.log(req.session)
     res.render('business/new', {business: req.session.user});                       //render hbs 'signup'
@@ -12,7 +16,7 @@ router.post('/signup-business', (req,res,next) => {
 
     const { username, password } = req.body;
 
-    if(password.length < 5) res.render( 'signup', {message : 'must be 2 chars min'})
+    if(password.length < 2) res.render( 'signup', {message : 'must be 2 chars min'})
     if(username === '')     res.render( 'signup', {message : 'cannot be empty'})
 
     //  CREATE A DB USER AND PASSWORD+SALT
@@ -40,6 +44,33 @@ router.post('/signup-business', (req,res,next) => {
     })
 });
 
+
+
+router.post('/login-business', (req, res, next)=>{
+    //get user and pass
+    console.log('checking');
+    const { username , password} = req.body;
+    //check user and pass are correct
+    Business.findOne({ username: username})     ///argumento pasado de body al metodo finOne
+    .then( found => {
+        //  IF THE USER DOESN'T EXIST
+        if(found === null) {    
+            res.render('login', { message : 'Invalid credentials' })
+        }
+        //check the passw match with database
+        if(bcrypt.compareSync( password, found.password )){
+            
+            //IF PASSW + HASH MATCH //THE USER IS LOGGED
+            req.session.user = found;
+            res.redirect('/business/index');
+        }
+            //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
+        else{
+            res.render('login', { message : 'Invalid credentials' })
+        }
+    });
+});
+
 router.post('/new', (req, res) => {
     console.log(req.body);
     console.log(req.session.user._id);
@@ -61,9 +92,11 @@ router.post('/new', (req, res) => {
     }).catch(err => console.log(err))
 });
 
-router.get('/index', (req, res) => {
-    console.log(req.session.user)
-    res.render('business/index', {business: req.session.user } )
+router.get('/:id', (req, res) => {
+    Business.findById(req.params.id)
+    .then( business =>{
+        res.render('business/company-details', {business: business } )
+    }).catch(err => console.log(err));
 })
 
 

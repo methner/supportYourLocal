@@ -18,7 +18,7 @@ const businesses = [
       website: "www.victoriametalbert.com",
     },
     username: 'vic_and_al',
-	password: '12345678',
+	password: '',
 	avatar: "",
 	role: 'admin',
 	voucher: [],
@@ -36,7 +36,7 @@ const businesses = [
       website: "https://www.hausen-berlin.de/",
     },
     username: 'hausen',
-	password: '12345678',
+	password: '',
 	avatar: "",
 	role: 'admin',
 	voucher: [],
@@ -53,7 +53,7 @@ const businesses = [
       website: "https://www.buchboxberlin.de/",
     },
     username: 'buchbox',
-	password: '12345678',
+	password: '',
 	avatar: "",
 	role: 'admin',
 	voucher: [],
@@ -71,7 +71,7 @@ const businesses = [
       website: "https://www.lordofsocks.com/",
     },
     username: 'lordofsocks',
-	password: '12345678',
+	password: '',
 	avatar: "",
 	role: 'admin',
 	voucher: [],
@@ -88,7 +88,7 @@ const businesses = [
       website: "https://kado.de/de/",
     },
     username: 'kado',
-	password: '12345678',
+	password: '',
 	avatar: "",
 	role: 'admin',
 	voucher: [],
@@ -104,6 +104,11 @@ const businesses = [
 //   });
 // });
 Business.insertMany(businesses).then(data => {
+
+  // const salt = bcrypt.genSaltSync();
+  // console.log(salt);
+  // const hash = bcrypt.hashSync(password, salt);
+
   console.log("successfully inserted");
   mongoose.connection.close();
 }).catch(err => {
