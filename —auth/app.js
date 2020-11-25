@@ -102,10 +102,6 @@ app.locals.title = 'Support your Local!';
 const index = require('./routes/index');
 app.use('/', index);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 const user = require('./routes/user');
 app.use('/user', user);         //all the routes that receive /user goes to
 
