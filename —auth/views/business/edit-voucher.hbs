@@ -1,0 +1,13 @@
+<h1>Edit a voucher</h1>
+<form action="/voucher/{{voucher._id}}" method="POST">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" value="{{voucher.title}}">
+
+    <label for="price">Value</label>
+    <input id="price" type="number" name="price" value="{{voucher.price}}">
+
+    <label for="description">Description</label>
+    <input id="description" type="text" name="description" value="{{voucher.description}}">
+
+    <button type="submit">Update</button>
+</form>
