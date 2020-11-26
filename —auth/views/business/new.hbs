@@ -1,17 +1,17 @@
 <h1>Welcome {{business.username}}</h1>
 <br>
-<h2>Please add your business information below</h2>
+<h3>Please add your business information below</h3>
 
-<form action="/business/new" method="POST">
-  <label for="username">Username: </label> 
-  <input id="username" type="text" name="username" value="{{ business.username}}">
+<form action="/business/new" method="POST" enctype="multipart/form-data">
+ <label for="compmanyName">Compmany Name: </label> 
+  <input id="compmanyName" type="text" name="compmanyName" value="{{ business.compmanyName}}">
   <br>
   <br>
   <label for="description">Description: </label> 
   <input id="description" type="text" name="description" value="{{ business.description}}">
   <br>
   <br>
-  <label for="name">Main contact person: </label> 
+  <label for="name">Contact Name: </label> 
   <input id="name" type="text" name="name" value="{{ business.contact.name}}">
   <br>
   <br>
@@ -29,7 +29,24 @@
   <br>
   <label for="website">Website: </label> 
   <input id="website" type="text" name="website" value="{{ business.contact.website}}">
-  
+  <br>
+  <br>
+  <label for="username">Username: </label> 
+  <input id="username" type="text" name="username" value="{{ business.username}}">
+  <br>
+  <br>
+  <label for="avatar">Logo: </label>
+  <input type="file" name="avatar" id="avatar" value="{{ business.avatar}}">
+  <br>
+  <br>
+  <label for="products">Products: </label>
+  <input type="file" name="products" id="products" value="{{ business.products}}">
+  <br>
+  <br>
+  {{!-- <label for="voucher">Voucher: </label>
+  <input type="file" name="voucher" id="voucher" value="{{ business.voucher}}"> --}}
+  <br>
+  <br>
 <button type="submit">Update</button>
 </form>
 <br>

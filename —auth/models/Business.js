@@ -15,7 +15,11 @@ const businessSchema = new Schema({
     username: String,
     password: String,
     //   socialmedia: String,
-    avatar: String,
+    avatar: {
+        imgName: String,
+        imgPath: String,
+        publicId: String
+    },
     role: {
         type: String,
         enum: ['admin', 'user'],
