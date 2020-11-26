@@ -9,9 +9,7 @@ const voucherSchema = new Schema({
     ref: 'Business'
   },
   price: Number,
-  imgName: String,
-  imgPath: String,
-  publicId: String,
+  
 
 });
 
