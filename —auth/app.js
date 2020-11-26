@@ -106,6 +106,9 @@ const user = require('./routes/user');
 app.use('/user', user);         //all the routes that receive /user goes to
 
 const business = require('./routes/business');
-app.use('/business', business)
+app.use('/business', business);
+
+const voucher = require('./routes/voucher');
+app.use('/voucher', voucher);
 
 module.exports = app;
