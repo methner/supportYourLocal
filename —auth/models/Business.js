@@ -22,13 +22,12 @@ const businessSchema = new Schema({
         default: 'admin'
       },
 
-<<<<<<< HEAD
     voucher: [
         { type: Schema.Types.ObjectId, 
            ref: 'Voucher' }],
-=======
-    voucher: String,
->>>>>>> master
+
+    voucher1: String,
+
     products: [
         {name: String, imageUrl: String,}
     ],

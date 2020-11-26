@@ -6,28 +6,28 @@ const Voucher    = require("../models/Voucher");
 
 
 router.get('/add-voucher', (req,res) => {     
-    // Voucher.find().then(allVouchers => {
-    //     const ownedVouchers = allVouchers.filter(voucher => {
-    //         return voucher.owner == req.session.user._id
-    //     })
+    console.log(req.session);
+    Business.findById(req.session.user._id).then(loggedUser => {
+        console.log(loggedUser)
+        res.render('business/add-voucher', {loggedUser});
 
-    //    , ownedVouchers
-   res.render('business/add-voucher', );
-
-
+    })
 });
 
+router.get("/voucher-details", (req, res) => {
 
+})
 
-router.post(':id/add-voucher', (req, res, next) => {
-
+router.post('/add-voucher/:id', (req, res, next) => {
+    const loggedUser = req.params.id;
     const { title, description, price } = req.body;
 
-    Voucher.create({ title: title, description:description, price:price })
+    Voucher.create({ title: title, description:description, price:price, owner: loggedUser })
+
         .then(dbVoucher => {
-            
+            console.log(dbVoucher)
         // Business.findById(req.params.id).populate('voucher', { voucher : dbVoucher})
-        //     res.redirect('/voucher/voucher-details', {dbVoucher});
+             res.redirect('/voucher/voucher-details');
         })
         .catch(err => {
             console.log(err)

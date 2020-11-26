@@ -199,15 +199,10 @@ router.get('/:id/edit', (req, res, next) => {
 
 router.get('/:id', (req, res) => {
     Business.findById(req.params.id)
-<<<<<<< HEAD
-    .then( business =>{
-        res.render('business/company-details', {    business: business  } )
-=======
     .then( (business) =>{
         console.log(business.products)
 
         res.render('business/company-details', {business: business } )
->>>>>>> master
     }).catch(err => console.log(err));
 })
 
