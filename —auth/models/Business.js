@@ -15,19 +15,14 @@ const businessSchema = new Schema({
     username: String,
     password: String,
     //   socialmedia: String,
-    avatar: {
-        imgName: String,
-        imgPath: String,
-        publicId: String
-    },
+    avatar: String,
     role: {
         type: String,
         enum: ['admin', 'user'],
         default: 'admin'
       },
 
-    voucher: [
-        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
+    voucher: String,
     products: [
         {name: String, imageUrl: String,}
     ],
