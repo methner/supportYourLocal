@@ -5,15 +5,19 @@
 
 <h1>Welcome {{user.username}}</h1>
 <br>
-<h2>Find your profile information below</h2>
+<h3>Find your profile information below</h3>
 
 <ul>
     <li>Username: {{user.username}}</li>
+    <li>Password: ********   </li>
     <li>Avatar:   {{user.avatar}}</li>
     <li>Full Name:{{user.name}}</li>
 </ul>
 <br>
-<a href="/business/voucher">Buy a voucher</a>
-<br>
-<a href="/user/company-overview">Your local Stores</a>
+
+<div>
+    <a class="signup-login" href="/business/voucher">Buy a voucher</a>
+    <br>
+    <a class="signup-login" href="/user/company-overview">Your local Stores</a>
+</div>
 
