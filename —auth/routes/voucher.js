@@ -37,3 +37,4 @@ router.get("/details", (req,res) =>  {
 //try findMany method
 
 module.exports = router;
+
