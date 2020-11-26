@@ -1,0 +1,21 @@
+<h1>Voucher</h1>
+<br>
+{{#each allVouchers}}
+<h1><a href="{{_id}}">{{title}}</a></h1>
+{{/each}}
+
+<form action="/voucher" method="POST">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title">
+
+    <label for="price">Value</label>
+    <input id="price" type="number" name="price">
+
+    <label for="description">Description</label>
+    <input id="description" type="text" name="description">
+
+    <button type="submit">Add</button>
+
+</form>
+
+
