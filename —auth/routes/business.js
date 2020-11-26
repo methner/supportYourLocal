@@ -18,14 +18,14 @@ router.post('/signup-business', (req,res,next) => {
 
     const { username, password } = req.body;
 
-    if(password.length < 2) res.render( 'signup', {message : 'must be 2 chars min'})
+    if(password.length < 5) res.render( 'signup', {message : 'must be 5 chars min'})
     if(username === '')     res.render( 'signup', {message : 'cannot be empty'})
 
     //  CREATE A DB USER AND PASSWORD+SALT
     Business.findOne({ username : username })
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
-        if( found !== null) res.render('signup', { message :'The username is already exist' })
+        if( found !== null) res.render('signup', { message :'The username already exists' })
         
         else{
             //  ELSE CREATE THE PASSWORD+SALT
@@ -135,13 +135,6 @@ router.post('/login-business', (req, res, next)=>{
     });
 });
 
-
-router.get('/:id', (req, res) => {
-    Business.findById(req.params.id)
-    .then( business =>{
-        res.render('business/company-details', {business: business } )
-    }).catch(err => console.log(err));
-})
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {
