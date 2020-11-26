@@ -1,0 +1,50 @@
+<h1>Company Details</h1>
+<br>
+<div>Company: {{business.companyName}}</div>
+<div>Description of business: {{business.description}}</div>
+<br>
+<h2>Contact Details</h2>
+<br>
+<div>Contact Person: {{business.contact.name}}</div>
+<div>Phone number: {{business.contact.phone}}</div>
+<div>Address: {{business.contact.address}}</div>
+<div>E-mail-address: {{business.contact.email}}</div>
+<div>Website: <div>{{business.contact.website}}</div>
+<br>
+<h2>Products</h2>
+{{#each business.products}}
+<div>business.products.name</div>
+<div>business.products.imageUrl</div>
+{{//each}}
+<br>
+<h2>Voucher</h2>
+{{#each business.voucher}}
+<div>business.voucher.type</div>
+{{//each}}
+
+
+{{!-- 
+    companyName: String,
+    description: String,
+    contact: {
+        name: String,
+        phone: String,
+        address: String,
+        email: String,
+        website: String,
+    },
+    username: String,
+    password: String,
+    //   socialmedia: String,
+    avatar: String,
+    role: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'admin'
+      },
+
+    voucher: [
+        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
+    products: [
+        {name: String, imageUrl: String,}
+    ], --}}
