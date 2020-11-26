@@ -1,25 +1,22 @@
 <h1>Voucher</h1>
 <br>
-{{#each voucher}}
-<div>Title: {{voucher.title}}</div>
-<div>Description: {{voucher.description}}</div>
-<div>Value: {{voucher.price}}</div>
-{{//each}}
+{{#each allVouchers}}
+<h1><a href="{{_id}}">{{title}}</a></h1>
+{{/each}}
+
+<h2>Add a voucher</h2>
+<form action="/voucher" method="POST">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title">
+
+    <label for="price">Value</label>
+    <input id="price" type="number" name="price">
+
+    <label for="description">Description</label>
+    <input id="description" type="text" name="description">
+
+    <button type="submit">Add</button>
+
+</form>
 
 
-
-
-
-{{!-- const voucherSchema = new Schema({
-  title: String,
-  description: String,
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'Business'
-  },
-  price: Number,
-  imgName: String,
-  imgPath: String,
-  publicId: String,
-
-});

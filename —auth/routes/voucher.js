@@ -3,11 +3,15 @@ const Voucher = require("../models/Voucher");
 const router     = express.Router();
 
 
+router.get('/', (req,res) => {     
+    // Voucher.find().then(allVouchers => {
+        // const ownedVouchers = allVouchers.filter(voucher => {
+        //     return voucher.owner == req.session.user._id
+        // })
 
-
-router.get('/', (req,res) => {              
-   console.log("this is the voucher route");
-   res.render('business/voucher-details');                
+   res.render('business/voucher-details'
+//    , ownedVouchers
+   );                
 });
 
 
@@ -15,16 +19,18 @@ router.post('/voucher', (req, res, next) => {
     const { title, description, price } = req.body;
     Voucher.create({ title, description, price })
         .then(() => {
-            res.redirect('/voucher-details');
+            res.redirect('/voucher/details');
         })
         .catch(err => {
             console.log(err)
         });
 });
 
-router.get("/voucher-details", (req,res) =>  {
-    Voucher.findOne({voucher})
-    res.render("business/voucher-details", {voucher})
+router.get("/details", (req,res) =>  { 
+
+        res.render("business/voucher-details")
+
+    
 
 })
 
