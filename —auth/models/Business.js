@@ -21,11 +21,13 @@ const businessSchema = new Schema({
         enum: ['admin', 'user'],
         default: 'admin'
       },
-
-    voucher: String,
+    
+    voucher: [
+        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
     products: [
         {name: String, imageUrl: String,}
     ],
+    voucher1: String,
 
 
 });

@@ -81,6 +81,7 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
     console.log(req.body);
     console.log(req.session.user._id);
     const newBusiness = {
+        companyName: req.body.companyName,
         username: req.body.username,
         description: req.body.description,
         contact: {
@@ -90,11 +91,7 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
         email: req.body.email,
         website: req.body.website
         }, 
-        avatar: {
-        imgName: req.file.path,
-        imgPath: req.file.originalname,
-        publicId: req.file.filename,
-        },
+        avatar: req.body.avatar,
         products: req.body.products,
         voucher: req.body.voucher
       }
