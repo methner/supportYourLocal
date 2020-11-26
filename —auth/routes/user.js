@@ -51,7 +51,7 @@ router.post('/login-user', (req, res, next)=>{
     .then( found => {
         //  IF THE USER DOESN'T EXIST
         if(found === null) {    
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { usermessage : 'Invalid credentials' })
         }
         //check the passw match with database
         if(bcrypt.compareSync( password, found.password )){
@@ -62,7 +62,7 @@ router.post('/login-user', (req, res, next)=>{
         }
             //IF THE USER NAME MATCH BUT THE PASS IS WRONG
         else{
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { usermessage : 'Invalid credentials' })
         }
     });
 });
