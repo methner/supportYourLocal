@@ -2,14 +2,12 @@
     <a class="signup-login" href="/logout">Logout</a>
 </div>
 
+<h1>Welcome {{business.companyName}}</h1>
 
-
-<h1>Welcome {{business.contact.name}}</h1>
-
-<h3>Here is your business information below</h3>
+<h3>Your business information</h3>
 <p>Business Description: {{business.description}}</p>
 <br>
-<h3>Contact Details</h3>
+<h3>Contact</h3>
 <ul>
     <li>Main contact person: {{business.contact.name}}</li>
     <li>Phone number: {{business.contact.phone}}</li>
@@ -17,11 +15,11 @@
     <li>Email address:{{business.contact.email}}</li>
     <li>Website: {{business.contact.website}}</li>
     <li><img src="{{business.avatar.imgPath}}"></li>
-    
+    <br>
     <li>Product: {{business.products}}</li>
     <li>voucher:{{business.voucher}}</li>
 </ul>
 <br>
-<a href="/voucher">Add a voucher</a>
+<a href="/voucher/add-voucher">Add a voucher</a>
 
 

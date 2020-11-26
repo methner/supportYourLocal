@@ -1,5 +1,6 @@
 <h1>Add a voucher</h1>
-<form action="/voucher" method="POST">
+{{loggedUser._id}}
+<form action="/voucher/add-voucher" method="POST">
     <label for="title">Title</label>
     <input id="title" type="text" name="title">
 
@@ -11,4 +12,4 @@
 
     <button type="submit">Add</button>
 
-</form>
+</form> 

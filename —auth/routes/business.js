@@ -1,11 +1,12 @@
 const express    = require("express");
 const router     = express.Router();
-const bcrypt    = require('bcrypt');
-const Business  = require('../models/Business');
+const bcrypt     = require('bcrypt');
+const Business   = require('../models/Business');
 const { uploader, cloudinary } = require('../config/cloudinary');
 
 
-router.get('/index', (req,res) => {            
+router.get('/index', (req,res) => {
+    console.log(req.session.user);
     res.render('business/index', {business: req.session.user});                      
 });
 

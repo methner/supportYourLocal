@@ -24,6 +24,7 @@ const businessSchema = new Schema({
     
     voucher: [
         { type: Schema.Types.ObjectId, ref: 'Voucher' }],
+
     products: [
         {name: String, imageUrl: String,}
     ],
