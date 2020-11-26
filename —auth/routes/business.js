@@ -1,11 +1,12 @@
 const express    = require("express");
 const router     = express.Router();
-const bcrypt    = require('bcrypt');
-const Business  = require('../models/Business');
+const bcrypt     = require('bcrypt');
+const Business   = require('../models/Business');
 const { uploader, cloudinary } = require('../config/cloudinary');
 
 
-router.get('/index', (req,res) => {            
+router.get('/index', (req,res) => {
+    console.log(req.session.user);
     res.render('business/index', {business: req.session.user});                      
 });
 
@@ -122,7 +123,7 @@ router.get('/:id/edit', (req, res, next) => {
 router.get('/:id', (req, res) => {
     Business.findById(req.params.id)
     .then( business =>{
-        res.render('business/company-details', {business: business } )
+        res.render('business/company-details', {    business: business  } )
     }).catch(err => console.log(err));
 })
 
