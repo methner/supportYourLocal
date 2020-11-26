@@ -1,7 +1,7 @@
 const express    = require("express");
 const router     = express.Router();
  const bcrypt    = require('bcrypt');
- const mongoose = require('mongoose');
+ const mongoose  = require('mongoose');
  const User      = require('../models/User');
 const Business   = require('../models/Business');
 
@@ -15,14 +15,14 @@ router.post('/signup-user', (req,res,next) => {
     const { username, password } = req.body;
 
     //  USER FORMAT CONDITIONS
-    if(password.length < 2) res.render( 'signup', {message : 'must be 2 chars min'})
-    if(username === '')     res.render( 'signup', {message : 'cannot be empty'})
+    if(password.length < 2) res.render( 'signup', {usermessage : 'must be 2 chars min'})
+    if(username === '')     res.render( 'signup', {usermessage : 'cannot be empty'})
 
     //  CREATE A DB USER AND PASSWORD+SALT
     User.findOne({ username : username })
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
-        if( found !== null) res.render('signup', { message :'The username is already exist' })
+        if( found !== null) res.render('signup', { usermessage :'The username is already exist' })
         //  ELSE CREATE THE PASSWORD+SALT
         else{            
             const salt = bcrypt.genSaltSync();
@@ -51,7 +51,7 @@ router.post('/login-user', (req, res, next)=>{
     .then( found => {
         //  IF THE USER DOESN'T EXIST
         if(found === null) {    
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { usermessage : 'Invalid credentials' })
         }
         //check the passw match with database
         if(bcrypt.compareSync( password, found.password )){
@@ -62,15 +62,13 @@ router.post('/login-user', (req, res, next)=>{
         }
             //IF THE USER NAME MATCH BUT THE PASS IS WRONG
         else{
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { usermessage : 'Invalid credentials' })
         }
     });
 });
 
 
 router.get('/company-overview', (req, res) => {
-    console.log('CHECKING');
-   // res.render('company-overview', {companyList : business})
     //EMPTY FIND() TO GET ALL THE BUSINESS FROM DB
       Business.find()
       .then(business => { //     //RENDER THE COMPANIES VIEW TO DISPLAY THEM

@@ -2,7 +2,8 @@
 
 body {
   font-family: Poppins, sans-serif;
-  
+  height: 100vh;
+  width: 100vw;
 }
 h2 {
   font-size: 1.5em;
@@ -19,11 +20,11 @@ h2 {
   text-align: center;
   margin: 2px 0 0 10px;
   color: white;
-  background-color: rgb(38, 143, 76);
+  background-color: #EF6867;
 }
 
 #companyName {
-  font-size: 1.6em;
+  font-size: 2em;
   width: 20vw;
   padding:5px;
   border-radius: 10px;
@@ -35,11 +36,9 @@ h2 {
   text-align: center;
   margin: 2px 0 0 10px;
   color: white;
-  background-color: rgb(38, 143, 76);
+  background-color: black;
 }
-.details p {
-  margin: 0 0 0 5px;
-}
+
 .index {
   width: 600px;
   height: 35vm;
@@ -76,18 +75,7 @@ h2 {
   color: white;
   background-color: #dbbfbf;
 }
-.text { 
-  max-width: 100vw;
-  padding: 5px;
-  font-size: 1vw;
-  color: black;
-  font-weight: lighter;
-  text-align: left;
-  margin: 1rem 0 2rem 0;
-  line-height: 1.5em;
-  width: 50vh;
-  
-}
+
 h4 {
   font-size: 1em;
   font-style: underline;
@@ -183,12 +171,3 @@ a {
   background-color: grey;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	// align-items: center;
-  align-content: stretch;
-  padding-left: 50px ;
-}

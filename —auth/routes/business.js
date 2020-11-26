@@ -4,9 +4,11 @@ const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 const { uploader, cloudinary } = require('../config/cloudinary');
 
-router.get('/index', (req,res) => {            //when call the /signup
-    res.render('business/index');                       //render hbs 'signup'
+
+router.get('/index', (req,res) => {            
+    res.render('business/index', {business: req.session.user});                      
 });
+
 
 router.get('/new', (req,res) => {            //when call the /signup
     console.log(req.session)
@@ -57,7 +59,7 @@ router.post('/login-business', (req, res, next)=>{
     .then( found => {
         //  IF THE USER DOESN'T EXIST
         if(found === null) {    
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { businessmessage : 'Invalid credentials' })
         }
         //check the passw match with database
         if(bcrypt.compareSync( password, found.password )){
@@ -68,10 +70,12 @@ router.post('/login-business', (req, res, next)=>{
         }
             //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
         else{
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { businessmessage : 'Invalid credentials' })
         }
     });
 });
+
+
 router.post('/new', uploader.single('avatar'), (req, res) => {
 // router.post('/new', (req, res) => {
     console.log(req.body);
@@ -101,51 +105,23 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
     }).catch(err => console.log(err))
 });
 
+//ineke: add route to edit business info
+router.get('/:id/edit', (req, res, next) => {
+    Business.findById(req.params.id)
+    .then(business => {
+        res.render('business/edit', {business})
+    })
+    .catch(err => {
+        next(err);
+    });
+});
+
 router.get('/:id', (req, res) => {
     Business.findById(req.params.id)
     .then( business =>{
         res.render('business/company-details', {business: business } )
     }).catch(err => console.log(err));
 })
-
-
-
-router.post('/login-business', (req, res, next)=>{
-    //get user and pass
-    console.log('checking');
-    const { username , password} = req.body;
-    //check user and pass are correct
-    Business.findOne({ username: username})     ///argumento pasado de body al metodo finOne
-    .then( found => {
-        //  IF THE USER DOESN'T EXIST
-        if(found === null) {    
-            res.render('login', { message : 'Invalid credentials' })
-        }
-        //check the passw match with database
-        if(bcrypt.compareSync( password, found.password )){
-            
-            //IF PASSW + HASH MATCH //THE USER IS LOGGED
-            req.session.user = found;
-            res.redirect('/business/index');
-        }
-            //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
-        else{
-            res.render('login', { message : 'Invalid credentials' })
-        }
-    });
-});
-
-
-router.get('/logout', (req, res, next) => {
-    req.session.destroy((err) => {
-      if (err) {
-        next(err);
-      } else {
-        res.redirect('/');
-      }
-    });
-  });
-
 
 
 
