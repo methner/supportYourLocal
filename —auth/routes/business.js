@@ -198,7 +198,9 @@ router.get('/:id/edit', (req, res, next) => {
 
 router.get('/:id', (req, res) => {
     Business.findById(req.params.id)
-    .then( business =>{
+    .then( (business) =>{
+        console.log(business.products)
+
         res.render('business/company-details', {business: business } )
     }).catch(err => console.log(err));
 })

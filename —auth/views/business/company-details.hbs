@@ -1,15 +1,18 @@
-<h1>Company Details</h1>
 
+<div class="container">
+    <h1>Company Details</h1>
 
     <div class="details">
-        <h2 id="companyName">{{business.companyName}}</h2>
-        </div>
+        {{!-- <h2 id="companyName">{{business.companyName}}</h2> --}}
+    </div>
+    <div class="logo">
+        <img id="logo" src="{{business.avatar}}" alt="imageUrl">
+    </div>
         <br>
     <div>
         <h3>Who we are</h3>
-         <p class="text">{{business.description}}  </p> 
+            <p class="text">{{business.description}}  </p> 
     </div>
-        <br>
         <div>
             <h3>Contact Details</h3>
             <br>
@@ -19,63 +22,31 @@
             <br>    
             <span>Address: {{business.contact.address}}</span>
             <br>
-            <span>{{business.contact.email}}</span>
+            <a href="{{business.contact.email}}">{{business.contact.email}}</a>
             <br>
-            <span>{{business.contact.website}}</span>
+            <a href="{{business.contact.website}}">{{business.contact.website}}</a>
             
             <br>
         </div>
     
         <h3>Products</h3>
+        <div id="product-list">
         {{#each business.products}}
+            <img id="product" src={{imageUrl}} alt="imageUrl">
+        {{/each}}
+        </div>
+    <div id="product-list">
+     <h3>Voucher</h3>
+        <span>Please enjoy a voucher from {{business.companyName}} </span>
+        <br>
+        <img id="product1" src="{{business.voucher}}" alt="">
+       
+        </div>
+    {{!-- <br>
+    <h3>Voucher</h3>
+    {{#each business.voucher}}
+    <div>business.voucher.type</div>
+    {{/each}} --}}
     
-            <span>{{business.products.name}}</span>
-    
-            <img src="{{business.products.imageUrl}}" alt="imageUrl">
-            
-
-    
-    <br>
-
-    <h3>Products</h3>
-    {{#each business.products}}
-
-        <span>{{business.products.name}}</span>
 
 
-        <img src={{business.products.imageUrl}} alt="imageUrl">
-
-
-{{/each}}
-<br>
-<h3>Voucher</h3>
-{{#each business.voucher}}
-<div>business.voucher.type</div>
-{{/each}}
-
-
-{{!-- 
-    companyName: String,
-    description: String,
-    contact: {
-        name: String,
-        phone: String,
-        address: String,
-        email: String,
-        website: String,
-    },
-    username: String,
-    password: String,
-    //   socialmedia: String,
-    avatar: String,
-    role: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'admin'
-      },
-
-    voucher: [
-        { type: Schema.Types.ObjectId, ref: 'Voucher' }],
-    products: [
-        {name: String, imageUrl: String,}
-    ], --}}
