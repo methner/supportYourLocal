@@ -100,12 +100,28 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
     }).catch(err => console.log(err))
 });
 
+
+
+//ineke: add route to edit business info
+router.get('/:id/edit', (req, res, next) => {
+    Business.findById(req.params.id)
+    .then(business => {
+        res.render('business/edit', {business})
+    })
+    .catch(err => {
+        next(err);
+    });
+});
+
+
+
 router.get('/:id', (req, res) => {
     Business.findById(req.params.id)
     .then( business =>{
         res.render('business/company-details', {business: business } )
     }).catch(err => console.log(err));
 })
+
 
 
 module.exports = router;
