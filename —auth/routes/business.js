@@ -4,6 +4,7 @@ const bcrypt    = require('bcrypt');
 const Business  = require('../models/Business');
 const { uploader, cloudinary } = require('../config/cloudinary');
 
+
 router.get('/index', (req,res) => {            
     res.render('business/index', {business: req.session.user});                      
 });
@@ -27,6 +28,7 @@ router.post('/signup-business', (req,res,next) => {
     .then( found =>{
         //  CHECK IF USER EXIST // IF EXISTS, SEND TO SIGNUP PAGE AND SEND MESSAGE
         if( found !== null) res.render('signup', { businessmessage :'The username is already exist' })
+        
         else{
             //  ELSE CREATE THE PASSWORD+SALT
             const salt = bcrypt.genSaltSync();
@@ -37,7 +39,7 @@ router.post('/signup-business', (req,res,next) => {
             .then(dbBusiness => {
                 //log in
                 req.session.user = dbBusiness;
-                res.redirect('business/new');
+                res.redirect('/business/new');
             })
             .catch(err => {
                 next(err);
@@ -45,6 +47,8 @@ router.post('/signup-business', (req,res,next) => {
         }
     })
 });
+
+
 
 router.post('/login-business', (req, res, next)=>{
     //get user and pass
@@ -55,7 +59,7 @@ router.post('/login-business', (req, res, next)=>{
     .then( found => {
         //  IF THE USER DOESN'T EXIST
         if(found === null) {    
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { businessmessage : 'Invalid credentials' })
         }
         //check the passw match with database
         if(bcrypt.compareSync( password, found.password )){
@@ -66,10 +70,11 @@ router.post('/login-business', (req, res, next)=>{
         }
             //IF THE USER NAME MATCH BUT THE PASSW IS WRONG
         else{
-            res.render('login', { message : 'Invalid credentials' })
+            res.render('login', { businessmessage : 'Invalid credentials' })
         }
     });
 });
+
 
 router.post('/new', uploader.single('avatar'), (req, res) => {
 // router.post('/new', (req, res) => {
@@ -99,7 +104,6 @@ router.post('/new', uploader.single('avatar'), (req, res) => {
         res.redirect('/business/index')
     }).catch(err => console.log(err))
 });
-
 
 
 //ineke: add route to edit business info
